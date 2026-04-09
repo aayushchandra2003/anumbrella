@@ -40,7 +40,7 @@
       <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#111827 1px, transparent 1px); background-size: 30px 30px;"></div>
 
       <!-- Navbar -->
-      <nav id="main-nav" class="fixed top-4 left-1/2 -translate-x-1/2 w-[85%] lg:w-[80%] max-w-6xl z-50 bg-white/70 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-full border-2 border-white/60 py-1.5 px-5 md:py-2 md:px-6 transition-all duration-500 ease-in-out">
+      <nav id="main-nav" class="fixed top-4 left-1/2 -translate-x-1/2 w-[85%] lg:w-[80%] max-w-6xl z-50 bg-white/10 backdrop-blur-sm shadow-none rounded-full border border-white/20 py-1.5 px-5 md:py-2 md:px-6 transition-all duration-500 ease-in-out">
         <div class="flex justify-between items-center">
           <!-- Logo -->
           <div class="flex-shrink-0 flex items-center">
@@ -128,11 +128,11 @@
                   <path d="M0,10 Q150,20 300,10 L300,16 Q150,26 0,16 Z"></path>
                 </svg>
                 
-                <!-- Swoosh arrow safely tucked to the exact right of the text -->
-                <div class="hidden xl:block absolute -right-28 top-[10%] text-gray-900 opacity-90 drop-shadow-sm rotate-[10deg]">
-                   <svg class="w-24 h-16" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
-                     <path d="M10,40 Q50,-10 90,20" />
-                     <path d="M80,5 L95,22 L75,30" />
+                <!-- Swoosh arrow - dynamically points at the flying mango -->
+                <div id="swoosh-arrow-container" class="hidden xl:block absolute -right-28 top-[10%] text-gray-900 opacity-90 drop-shadow-sm">
+                   <svg id="swoosh-arrow-svg" class="w-24 h-16" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" overflow="visible">
+                     <path id="swoosh-curve" d="M10,40 Q50,-10 90,20" />
+                     <path id="swoosh-head" d="M80,5 L95,22 L75,30" />
                    </svg>
                 </div>
               </span>
@@ -425,16 +425,22 @@
           const currentScroll = window.scrollY;
           const targetIsSticky = currentScroll > triggerScroll;
 
-          // Navbar shrink on scroll
+          // Navbar: ultra-transparent at top, solid+small when scrolled
           if (nav) {
             if (currentScroll > 50) {
               nav.classList.add('py-1', 'md:py-1.5', 'shadow-lg');
               nav.classList.remove('py-1.5', 'md:py-2');
-              nav.style.borderColor = 'transparent';
+              nav.style.background = 'rgba(255,255,255,0.88)';
+              nav.style.backdropFilter = 'blur(16px)';
+              nav.style.borderColor = 'rgba(255,255,255,0.6)';
+              nav.style.boxShadow = '0 8px 30px rgba(0,0,0,0.10)';
             } else {
               nav.classList.remove('py-1', 'md:py-1.5', 'shadow-lg');
               nav.classList.add('py-1.5', 'md:py-2');
-              nav.style.borderColor = '';
+              nav.style.background = 'rgba(255,255,255,0.08)';
+              nav.style.backdropFilter = 'blur(4px)';
+              nav.style.borderColor = 'rgba(255,255,255,0.15)';
+              nav.style.boxShadow = 'none';
             }
           }
 
@@ -448,25 +454,62 @@
               if (animatedProg < 0) animatedProg = 0;
           }
 
-          // Always calculate path so it's fully populated before scrolling
-          const hx = hRect.left + (hRect.width / 2);
+          // Shift origin 120px left so mango & path start on the left side
+          const hx = hRect.left + (hRect.width / 2) - 120;
           const hy = hRect.top + (hRect.height / 2);
           const nx = nRectOriginal.left + nRectOriginal.width / 2;
           const ny = nRectOriginal.top + nRectOriginal.height / 2;
 
           updatePath(hx, hy, nx, ny);
 
-          // Show/hide journey path - should be visible even at rest before scroll
+          // Show/hide journey path - visible before scroll
           if (journeySvg) {
             if (animatedProg < 1) {
               journeySvg.style.display = 'block';
-              // Position the Bangalore label slightly below the mango's starting locus
+              // Label sits below-left the mango origin
               if (labelStart) {
-                labelStart.setAttribute('transform', `translate(${hx - 60}, ${hy + 80})`);
+                labelStart.setAttribute('transform', `translate(${hx - 40}, ${hy + 90})`);
               }
             } else {
               journeySvg.style.display = 'none';
             }
+          }
+
+          // Dynamic swoosh arrow: tip always points at live mango position
+          const swooshCurve = document.getElementById('swoosh-curve');
+          const swooshHead = document.getElementById('swoosh-head');
+          const swooshContainer = document.getElementById('swoosh-arrow-container');
+          if (swooshCurve && swooshHead && swooshContainer) {
+            const containerRect = swooshContainer.getBoundingClientRect();
+            // Get live mango center in screen coords
+            let mangoScreenX, mangoScreenY;
+            if (animatedProg <= 0) {
+              mangoScreenX = hx;
+              mangoScreenY = hy;
+            } else {
+              const flyRect = flying.getBoundingClientRect();
+              mangoScreenX = flyRect.left + flyRect.width / 2;
+              mangoScreenY = flyRect.top + flyRect.height / 2;
+            }
+            // Convert to local SVG coords (viewBox 0 0 100 50)
+            const svgRect = swooshContainer.querySelector('svg').getBoundingClientRect();
+            const localX = ((mangoScreenX - svgRect.left) / svgRect.width) * 100;
+            const localY = ((mangoScreenY - svgRect.top) / svgRect.height) * 50;
+            // Keep curve start fixed at bottom-left of the arrow area
+            const startX = 10, startY = 45;
+            const midX = (startX + localX) / 2;
+            const midY = Math.min(startY, localY) - 30;
+            swooshCurve.setAttribute('d', `M${startX},${startY} Q${midX},${midY} ${localX},${localY}`);
+            // Arrowhead tangent direction at endpoint
+            const dx = localX - midX;
+            const dy = localY - midY;
+            const len = Math.sqrt(dx * dx + dy * dy) || 1;
+            const ux = dx / len, uy = dy / len;
+            const px = -uy, py = ux; // perpendicular
+            const tipX = localX, tipY = localY;
+            swooshHead.setAttribute('d',
+              `M${tipX - ux * 14 + px * 7},${tipY - uy * 14 + py * 7} L${tipX},${tipY} L${tipX - ux * 14 - px * 7},${tipY - uy * 14 - py * 7}`
+            );
           }
 
           if (animatedProg <= 0) {
