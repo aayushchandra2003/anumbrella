@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-vite@5 ammasthota -- --template vanilla)",
+      "Bash(rm -rf ammasthota)",
+      "Bash(mkdir -p ammasthota/public/images ammasthota/src)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ammasthota Mangoes</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="/src/style.css" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3, h4, .display-font {
+        font-family: 'Outfit', 'Inter', sans-serif;
+      }
+      /* Ensure images blend well with the banner background */
+      .blend-image {
+        mix-blend-mode: multiply;
+      }
+      .stroke-text {
+        -webkit-text-stroke: 1px #111827;
+        color: transparent;
+      }
+    </style>
+  </head>
+  <body class="bg-[#F9F7F2] text-gray-900 font-inter antialiased overflow-x-hidden selection:bg-yellow-400 selection:text-black">
+    <!-- Hero Section Wraps Navbar like in the design (Background continuous) -->
+    <div class="relative bg-[#FFCF08] min-h-[95vh] rounded-b-[2rem] md:rounded-b-[4rem] shadow-xl overflow-hidden flex flex-col border-b-8 border-gray-900">
+      
+      <!-- Subtle Decorative Grid or Lines in Background -->
+      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#111827 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+      <!-- Navbar -->
+      <nav id="main-nav" class="fixed top-6 left-1/2 -translate-x-1/2 w-[85%] lg:w-[80%] max-w-6xl z-50 bg-white/70 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-full border-2 border-white/60 py-2.5 px-6 md:py-3 md:px-8 transition-all duration-500 ease-in-out">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex-shrink-0 flex items-center">
+            <!-- Anchor for the flying mango -->
+            <div id="nav-mango-anchor" class="w-8 h-8 md:w-9 md:h-9 mr-1.5 opacity-0"></div>
+            <span class="text-2xl font-black text-gray-900 tracking-tight lowercase">ammasthota.</span>
+          </div>
+          
+          <!-- Desktop Links -->
+          <div class="hidden lg:flex space-x-10 items-center">
+            <a href="#" class="text-gray-900 hover:text-orange-600 font-bold text-sm transition-colors relative group">
+              Home
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 transition-all group-hover:w-full"></span>
+            </a>
+            
+            <div class="relative group">
+              <a href="#shop" class="text-gray-900 hover:text-orange-600 font-bold text-sm transition-colors flex items-center gap-1.5 focus:outline-none">
+                Shop Mangoes
+                <svg class="w-4 h-4 text-gray-500 group-hover:text-orange-600 transition-transform transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+              </a>
+              <div class="absolute top-full left-1/2 -translate-x-1/2 mt-4 bg-white rounded-2xl shadow-xl w-56 overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 border border-gray-100">
+                <a href="#shop" class="block px-6 py-4 text-sm font-bold text-gray-800 hover:bg-[#FFCF08] hover:text-black transition-colors border-b border-gray-100">12 Pieces Gift Pack</a>
+                <a href="#shop" class="block px-6 py-4 text-sm font-bold text-gray-800 hover:bg-[#FFCF08] hover:text-black transition-colors">24 Pieces Gift Pack</a>
+              </div>
+            </div>
+
+            <a href="https://wa.me/918178879503?text=Hey,%20I%20wanted%20to%20purchase%20in%20bulk.%20Can%20you%20please%20tell%20me%20about%20it%3F" target="_blank" class="text-gray-900 hover:text-orange-600 font-bold text-sm transition-colors">Bulk Query</a>
+          </div>
+
+          <!-- Icons & CTA -->
+          <div class="flex items-center space-x-4 md:space-x-6">
+            <!-- Bag Icon -->
+            <button class="relative text-gray-900 hover:text-orange-600 transition-colors p-2 hidden sm:block">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <!-- badge -->
+              <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-orange-600 rounded-full border-2 border-white"></span>
+            </button>
+            
+            <a href="#shop" class="bg-gray-900 hover:bg-black text-white px-6 py-2 md:px-7 md:py-2.5 rounded-full font-bold text-sm shadow-md hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center gap-2 border-[3px] border-gray-900 hover:border-black">
+              Shop Now
+            </a>
+
+            <!-- Mobile menu button -->
+            <div class="lg:hidden flex items-center">
+              <button class="text-gray-900 p-1">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Header & Content -->
+      <div class="relative z-10 pt-28 pb-16 lg:pt-36 lg:pb-24 w-full flex-grow flex flex-col justify-center overflow-hidden">
+        <!-- Floating decor elements -->
+        <div class="absolute top-32 left-4 lg:top-40 lg:left-16 animate-[pulse_4s_ease-in-out_infinite] hidden md:block">
+           <!-- Star Shape -->
+           <svg width="45" height="45" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="white"/></svg>
+        </div>
+        <div class="absolute bottom-20 left-[40%] lg:bottom-24 lg:left-[45%] opacity-60 animate-[bounce_4s_infinite]">
+           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#111827"/></svg>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-5 lg:px-12 w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-8">
+          
+          <!-- Text Content (Left) -->
+          <div class="text-center lg:text-left lg:w-[55%] flex flex-col items-center lg:items-start z-20">
+            <!-- Trust Badge -->
+            <div class="bg-white/80 backdrop-blur-md px-4 py-2 lg:px-5 lg:py-2.5 rounded-full font-bold text-[0.65rem] md:text-sm uppercase tracking-widest mb-4 lg:mb-8 flex items-center gap-2 border-2 border-gray-900 shadow-[3px_3px_0px_0px_rgba(17,24,39,1)] lg:shadow-[4px_4px_0px_0px_rgba(17,24,39,1)]">
+              <div class="flex items-center text-[#ff9900]">
+                 <svg class="w-3 h-3 md:w-4 md:h-4 fill-current" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+              </div>
+              <span class="text-gray-900 whitespace-nowrap">2k+ Trusted By Orchard Lovers</span>
+            </div>
+            
+            <!-- Main Headline -->
+            <h1 class="text-[2.75rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] font-black leading-[0.95] tracking-tight text-gray-900 mb-4 lg:mb-6 uppercase display-font">
+              Ratnagiri<br class="hidden lg:block"/> Hapus,<br/>
+              <span class="relative inline-block mt-2">
+                Pure Gold.
+                <!-- Curved Underline -->
+                <svg class="absolute w-[105%] h-4 md:h-8 lg:h-10 -left-1 -bottom-3 lg:-bottom-6 text-gray-900 z-[-1]" fill="var(--tw-text-opacity, currentColor)" viewBox="0 0 300 20" preserveAspectRatio="none">
+                  <path d="M0,10 Q150,20 300,10 L300,16 Q150,26 0,16 Z"></path>
+                </svg>
+                
+                <!-- Swoosh arrow safely tucked to the exact right of the text -->
+                <div class="hidden xl:block absolute -right-28 top-[10%] text-gray-900 opacity-90 drop-shadow-sm rotate-[10deg]">
+                   <svg class="w-24 h-16" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+                     <path d="M10,40 Q50,-10 90,20" />
+                     <path d="M80,5 L95,22 L75,30" />
+                   </svg>
+                </div>
+              </span>
+            </h1>
+            
+            <p class="text-base sm:text-lg lg:text-xl text-gray-900 font-bold max-w-lg mt-4 lg:mt-6 mb-8 lg:mb-10 leading-relaxed opacity-90 mx-auto lg:mx-0">
+              Handpicked, naturally ripened, and delivered straight from our farm to your home.
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto px-4 sm:px-0">
+               <a href="#shop" class="w-full sm:w-auto bg-gray-900 hover:bg-black text-white px-8 py-3.5 lg:px-10 lg:py-4 rounded-full font-black text-base lg:text-lg shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3 border-[3px] border-gray-900">
+                 Buy Now
+                 <div class="bg-white text-black p-1 lg:p-1.5 rounded-full flex items-center justify-center">
+                   <svg class="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                 </div>
+               </a>
+            </div>
+
+          </div>
+          
+          <!-- Image Content (Right) -->
+          <div class="lg:w-[45%] mt-8 lg:mt-0 relative flex justify-center items-center z-10 w-full group">
+            
+            <!-- The Main Image Container (Pushed UP and made BIGGER) -->
+            <div class="relative w-[95%] sm:w-[85%] max-w-[500px] lg:max-w-[550px] -translate-y-4 md:-translate-y-8 aspect-square transition-transform duration-700 group-hover:scale-[1.03]">
+               <!-- The hero dynamic background image -->
+               <img src="./public/images/mango_hero_splash_new.png" alt="Pure Gold Organic Mangoes Splash" class="w-full h-full object-contain scale-125 opacity-100 drop-shadow-2xl" />
+               
+               <!-- Anchor for the flying mango in hero -->
+               <div id="hero-mango-anchor" class="absolute -top-14 -left-2 lg:-top-16 lg:-left-12 w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 opacity-0 bg-red-500/0"></div>
+               
+               <!-- 100% Organic Sticker (Bottom Right) Shorter and Smaller -->
+               <div class="absolute -bottom-8 right-2 lg:-right-4 w-20 h-20 md:w-28 md:h-28 lg:w-28 lg:h-28 bg-[#FF5C00] text-white rounded-full flex flex-col justify-center items-center transform rotate-12 shadow-[0_10px_20px_rgba(255,92,0,0.4)] border-4 border-white animate-[pulse_3s_ease-in-out_infinite]">
+                 <!-- decorative dotted border inside -->
+                 <div class="absolute inset-1.5 lg:inset-2 border-[1.5px] border-white/60 border-dashed rounded-full animate-[spin_30s_linear_infinite]"></div>
+                 <span class="font-black text-xl md:text-2xl lg:text-3xl leading-none display-font tracking-tighter">100%</span>
+                 <span class="font-bold text-[0.5rem] md:text-[0.65rem] lg:text-xs uppercase tracking-widest mt-1">Organic</span>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scrolling Marquee Banner just under the hero to connect visually to next sections -->
+    <div class="bg-gray-900 border-b-8 border-[#FFCF08] text-white py-4 overflow-hidden -mt-4 relative z-0 left-0 right-0">
+      <div class="flex whitespace-nowrap animate-[marquee_20s_linear_infinite]">
+        <!-- duplicate items for seamless loop -->
+        <div class="flex items-center gap-12 px-6 font-bold uppercase tracking-widest text-[#FFCF08] text-sm md:text-base">
+          <span class="flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> FRESH FROM FARM</span>
+          <span>•</span>
+          <span class="flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> HANDPICKED</span>
+          <span>•</span>
+          <span class="flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg> CARBIDE FREE</span>
+          <span>•</span>
+          <span class="flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> 100% ORGANIC</span>
+          <span>•</span>
+          <span class="flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> FRESH FROM FARM</span>
+          <span>•</span>
+          <span class="flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> HANDPICKED</span>
+          <span>•</span>
+        </div>
+      </div>
+      <style>
+        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+      </style>
+    </div>
+
+    <section id="shop" class="py-24 lg:py-32 bg-[#F9F7F2] relative">
+       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-20">
+            <span class="text-orange-600 font-bold uppercase tracking-widest text-sm mb-3 block">Premium Quality</span>
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 display-font mb-6 uppercase">Our Selection</h2>
+            <p class="text-xl text-gray-600 font-medium max-w-2xl mx-auto">Carefully curated boxes of joy. Perfectly ripened and packed with love.</p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+             
+             <!-- Left Side Free-Floating Image with Top/Bottom Organic Dashed Decor -->
+             <div class="relative w-full h-full flex justify-center items-center py-10 lg:py-16">
+                <!-- Top Minimal Dashed Flow -->
+                <svg class="absolute top-2 right-4 lg:-top-4 lg:right-12 w-32 h-32 lg:w-48 lg:h-48 text-gray-900/30 -rotate-12 pointer-events-none" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-dasharray="3,6" stroke-width="2.5" stroke-linecap="round">
+                   <path d="M -20,100 Q 40,30 110,-10" />
+                </svg>
+                
+                <!-- Bottom Minimal Dashed Flow -->
+                <svg class="absolute bottom-4 left-0 lg:-bottom-8 lg:left-6 w-32 h-32 lg:w-48 lg:h-48 text-gray-900/30 rotate-12 pointer-events-none" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-dasharray="3,6" stroke-width="2.5" stroke-linecap="round">
+                   <path d="M 120,0 Q 60,70 -10,110" />
+                </svg>
+                
+                <!-- The transparent splash image directly (Pushed Up and Scaled Bigger) -->
+                <img src="./public/images/premium_mango_splash-removebg-preview.png" alt="Premium Mango Splash" class="relative z-10 w-[110%] md:w-[130%] lg:w-[140%] max-w-[500px] lg:max-w-[650px] -translate-y-8 object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] hover:scale-105 transition-transform duration-500 mix-blend-multiply sm:mix-blend-normal"/>
+             </div>
+             
+             <!-- Products (Right side WhatsApp premium boxes) -->
+             <div class="space-y-8 flex flex-col justify-center relative z-20">
+                
+                <!-- Product Card 1 -->
+                <a href="https://wa.me/918178879503?text=Hey!%20I%20am%20interested%20in%20buying%20the%2012%20Pieces%20Gift%20Pack." target="_blank" class="block bg-white p-8 md:p-10 rounded-[2.5rem] shadow-[0_10px_40px_rgba(0,0,0,0.08)] border-2 border-gray-100 hover:border-gray-900 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden group cursor-pointer">
+                   <!-- Premium dark badge -->
+                   <div class="absolute top-0 right-0 bg-gray-900 group-hover:bg-[#FFCF08] group-hover:text-black transition-colors text-white px-6 py-2.5 font-black rounded-bl-3xl text-xs uppercase tracking-widest">Best Seller</div>
+                   
+                   <div class="pr-12 md:pr-16">
+                     <h3 class="text-3xl lg:text-4xl font-black text-gray-900 display-font mb-3 uppercase group-hover:text-black transition-colors">12 Pieces Gift Pack</h3>
+                     <p class="text-gray-500 mb-8 font-medium text-lg border-b border-gray-200 pb-6">Perfectly curated and handpicked premium mangoes for your loved ones.</p>
+                   </div>
+                   
+                   <div class="flex items-center justify-between mt-2">
+                     <div class="flex flex-col">
+                       <span class="text-gray-400 line-through font-bold text-sm mb-1">₹1,899</span>
+                       <span class="text-4xl lg:text-5xl font-black text-gray-900 tracking-tighter">₹1,499</span>
+                     </div>
+                     <div class="bg-gray-900 text-white w-14 h-14 rounded-full flex items-center justify-center transform group-hover:-rotate-[15deg] group-hover:bg-[#25D366] transition-all shadow-lg border-[3px] border-transparent group-hover:border-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                     </div>
+                   </div>
+                   
+                   <!-- WhatsApp hint overlay text on hover -->
+                   <div class="mt-4 text-sm font-bold text-gray-400 flex items-center gap-2 group-hover:text-[#25D366] transition-colors">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                      Order via WhatsApp
+                   </div>
+                </a>
+                
+                <!-- Product Card 2 -->
+                <a href="https://wa.me/918178879503?text=Hey!%20I%20am%20interested%20in%20buying%20the%2024%20Pieces%20Gift%20Pack." target="_blank" class="block bg-white p-8 md:p-10 rounded-[2.5rem] shadow-[0_5px_20px_rgba(0,0,0,0.05)] border-2 border-gray-100 hover:border-gray-900 transition-all duration-300 hover:-translate-y-2 group cursor-pointer">
+                   <h3 class="text-2xl lg:text-3xl font-black text-gray-900 display-font mb-3 uppercase group-hover:text-black">24 Pieces Gift Pack</h3>
+                   <p class="text-gray-500 mb-6 font-medium border-b border-gray-200 pb-6 text-lg">The grand pack for serious devours and beautiful corporate gifting.</p>
+                   
+                   <div class="flex items-center justify-between mt-2">
+                     <div class="flex flex-col">
+                       <span class="text-gray-400 line-through font-bold text-sm mb-1">₹3,499</span>
+                       <span class="text-4xl lg:text-5xl font-black text-gray-900 tracking-tighter">₹2,899</span>
+                     </div>
+                     <div class="bg-gray-100 text-gray-900 group-hover:text-white w-12 h-12 rounded-full flex items-center justify-center transform group-hover:-rotate-[15deg] group-hover:bg-[#25D366] transition-all shadow-sm border-[3px] border-transparent group-hover:border-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                     </div>
+                   </div>
+                   
+                   <!-- WhatsApp hint overlay text on hover -->
+                   <div class="mt-4 text-sm font-bold text-gray-400 flex items-center gap-2 group-hover:text-[#25D366] transition-colors">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                      Order via WhatsApp
+                   </div>
+                </a>
+                
+             </div>
+344:          </div>
+345:       </div>
+346:     </section>
+
+    <!-- Footer snippet -->
+    <footer class="bg-gray-900 text-white py-16 px-6 md:py-24 border-t-8 border-[#FFCF08]">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="text-center md:text-left">
+           <h2 class="text-4xl font-black text-white display-font mb-4 lowercase tracking-tight">ammasthota<span class="text-[#FFCF08]">.</span></h2>
+           <p class="text-gray-400 font-medium max-w-sm">Bringing the authentic taste of summer to your doorstep with love and organic care.</p>
+        </div>
+        <div class="flex items-center gap-6">
+           <a href="#" class="w-12 h-12 rounded-full border-2 border-gray-700 hover:border-white flex items-center justify-center transition-colors">
+             <!-- IG Icon -->
+             <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.20 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+           </a>
+           <a href="#" class="w-12 h-12 rounded-full border-2 border-gray-700 hover:border-white flex items-center justify-center transition-colors">
+             <!-- FB Icon -->
+             <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+           </a>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 mt-16 text-center border-t border-gray-800 pt-8">
+        <p class="text-sm text-gray-500 font-bold uppercase tracking-widest">© 2026 Ammasthota. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#FFCF08',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+          </div>
+       </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-16 px-6 md:py-24 border-t-8 border-[#FFCF08]">
+      <div class="max-w-7xl mx-auto flex flex-col items-center md:flex-row justify-between md:items-start gap-12">
+        <!-- Logo and CTA -->
+        <div class="text-center md:text-left md:w-1/2">
+           <h2 class="text-4xl font-black text-white display-font mb-4 lowercase tracking-tight">ammasthota<span class="text-[#FFCF08]">.</span></h2>
+           <p class="text-gray-400 font-medium max-w-sm mx-auto md:mx-0">Bringing the authentic taste of summer to your doorstep with love and organic care.</p>
+           
+           <div class="mt-8 flex justify-center md:justify-start">
+             <a href="https://wa.me/918178879503" target="_blank" class="w-14 h-14 rounded-full border-2 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-colors">
+               <!-- WhatsApp Icon -->
+               <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+             </a>
+           </div>
+        </div>
+        
+        <!-- Address Structure -->
+        <div class="flex flex-col text-center md:text-left w-full md:w-1/2 bg-gray-800/40 p-8 rounded-[2rem] border border-gray-700">
+           <h3 class="text-xl font-bold text-[#FFCF08] mb-5 uppercase tracking-widest text-sm">Contact Us</h3>
+           <p class="text-gray-300 mb-3 leading-relaxed text-sm lg:text-base"><strong class="text-white">Address:</strong><br/>C-116, Basement, Anand Niketan - 110021 Delhi</p>
+           
+           <div class="my-4 h-px w-full bg-gray-700/50"></div>
+           
+           <p class="text-gray-300 mb-3 text-sm lg:text-base"><strong class="text-white">For delivery in Delhi:</strong><br/>8178879503, 8882908766</p>
+           <p class="text-gray-300 mb-5 text-sm lg:text-base"><strong class="text-white">In Bangalore:</strong><br/>9964873237</p>
+           
+           <div class="inline-block bg-[#FFCF08]/10 border border-[#FFCF08]/30 px-5 py-3 rounded-xl mx-auto md:mx-0">
+              <p class="text-[#FFCF08] font-bold text-sm">Gift of 12 pieces or any required amount.</p>
+           </div>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 mt-16 text-center border-t border-gray-800 pt-8 relative z-50">
+        <p class="text-sm text-gray-500 font-bold uppercase tracking-widest">© 2026 Ammasthota. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { brand: '#FFCF08' },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+              outfit: ['Outfit', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- The immersive storyline flight path (Bangalore -> Home) -->
+    <svg id="flight-path" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[45] transition-opacity duration-300 opacity-100 hidden md:block">
+      <path id="flight-curve" stroke="rgba(255,255,255,0.8)" stroke-width="3" stroke-dasharray="6,8" fill="none" class="opacity-90 drop-shadow-sm" d="" />
+      
+      <!-- Location Pins -->
+      <g id="flight-start-group">
+        <g transform="translate(-12, 55)">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z" fill="#FFCF08" stroke="#111827" stroke-width="1.5" />
+        </g>
+        <text id="flight-start-text" x="-60" y="85" fill="#111827" font-size="11" font-weight="900" font-family="'Outfit', sans-serif" class="tracking-widest uppercase" style="text-shadow: 0px 2px 7px rgba(255,255,255,1), 0px 0px 3px rgba(255,255,255,0.8);">Bangalore Farms</text>
+      </g>
+      
+      <g id="flight-end-group">
+        <g transform="translate(-12, 12)">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#FF5C00" stroke="white" stroke-width="1.5"/>
+        </g>
+      </g>
+    </svg>
+
+    <!-- The physical flying element tracking physics -->
+    <img id="flying-mango" src="./public/images/floating_mango.png" class="fixed top-0 left-0 z-[100] object-contain drop-shadow-2xl pointer-events-none will-change-transform origin-center opacity-0 transition-opacity duration-300 hidden md:block" />
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const flying = document.getElementById('flying-mango');
+        const heroA = document.getElementById('hero-mango-anchor');
+        const navA = document.getElementById('nav-mango-anchor');
+        const nav = document.getElementById('main-nav');
+        
+        const flightPath = document.getElementById('flight-path');
+        const flightCurve = document.getElementById('flight-curve');
+        const startGrp = document.getElementById('flight-start-group');
+        const endGrp = document.getElementById('flight-end-group');
+        
+        setTimeout(() => { if(window.innerWidth >= 768) flying.style.opacity = '1'; }, 100);
+
+        let currentProgress = 0;
+        let targetProgress = 0;
+
+        function renderFlyer() {
+          const scrollY = window.scrollY;
+          
+          if (scrollY > 50) {
+            nav.classList.add('top-2', 'w-[98%]', 'lg:w-[95%]', 'py-0.5', 'bg-white/10', 'border-transparent');
+            nav.classList.remove('top-6', 'w-[85%]', 'lg:w-[80%]', 'py-2.5', 'md:py-3', 'bg-white/70', 'border-white/60');
+            navA.classList.remove('opacity-0');
+          } else {
+            nav.classList.add('top-6', 'w-[85%]', 'lg:w-[80%]', 'py-2.5', 'md:py-3', 'bg-white/70', 'border-white/60');
+            nav.classList.remove('top-2', 'w-[98%]', 'lg:w-[95%]', 'py-0.5', 'bg-white/10', 'border-transparent');
+            navA.classList.add('opacity-0');
+          }
+
+          if (window.innerWidth < 768) {
+             flightPath.style.display = 'none';
+             flying.style.display = 'none';
+             requestAnimationFrame(renderFlyer);
+             return;
+          } else {
+             flightPath.style.display = 'block';
+             flying.style.display = 'block';
+          }
+
+          const hRect = heroA.getBoundingClientRect();
+          const nRectOriginal = navA.getBoundingClientRect();
+          
+          if (hRect.width > 0 && nRectOriginal.width > 0) {
+             const startX = hRect.left + hRect.width / 2;
+             const startY = hRect.top + hRect.height / 2;
+             const endX = nRectOriginal.left + nRectOriginal.width / 2;
+             const endY = nRectOriginal.top + nRectOriginal.height / 2;
+             
+             const ctrl1X = startX + 350;
+             const ctrl1Y = startY - 100;
+             const ctrl2X = endX + 150;
+             const ctrl2Y = endY + 200;
+             
+             flightCurve.setAttribute('d', `M ${startX} ${startY} C ${ctrl1X} ${ctrl1Y}, ${ctrl2X} ${ctrl2Y}, ${endX} ${endY}`);
+             startGrp.setAttribute('transform', `translate(${startX}, ${startY})`);
+             endGrp.setAttribute('transform', `translate(${endX}, ${endY})`);
+
+             const maxScrollRange = 250; 
+             targetProgress = Math.min(Math.max((scrollY - 20) / maxScrollRange, 0), 1);
+             currentProgress += (targetProgress - currentProgress) * 0.08;
+             
+             let easedProg = currentProgress < 0.5 ? 2 * currentProgress * currentProgress : -1 + (4 - 2 * currentProgress) * currentProgress;
+
+             if (currentProgress > 0.85) {
+                 flightPath.style.opacity = (1 - (currentProgress - 0.85) * 6.66).toString();
+             } else {
+                 flightPath.style.opacity = '1';
+             }
+
+             const baseWidth = hRect.width + (nRectOriginal.width - hRect.width) * easedProg;
+             const baseHeight = hRect.height + (nRectOriginal.height - hRect.height) * easedProg;
+
+             const zAxisPopScaler = 1 + Math.sin(easedProg * Math.PI) * 0.65; 
+             const targetWidth = baseWidth * zAxisPopScaler;
+             const targetHeight = baseHeight * zAxisPopScaler;
+
+             flying.style.width = `${targetWidth}px`;
+             flying.style.height = `${targetHeight}px`;
+
+             const totalLength = flightCurve.getTotalLength();
+             if (totalLength > 0) {
+                 const pt = flightCurve.getPointAtLength(totalLength * easedProg);
+                 flying.style.transform = `translate(${pt.x - targetWidth/2}px, ${pt.y - targetHeight/2}px) rotate(${-12 + easedProg * 12}deg)`;
+             }
+          }
+          requestAnimationFrame(renderFlyer);
+        }
+        
+        requestAnimationFrame(renderFlyer);
+      });
+    </script>
+  </body>
+</html>
