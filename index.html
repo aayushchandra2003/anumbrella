@@ -128,11 +128,13 @@
                   <path d="M0,10 Q150,20 300,10 L300,16 Q150,26 0,16 Z"></path>
                 </svg>
                 
-                <!-- Swoosh arrow - small, fixed, pointing from text toward mango initial position -->
-                <div id="swoosh-arrow-container" class="hidden xl:block absolute -right-24 top-[5%] text-gray-900 opacity-80 drop-shadow-sm rotate-[8deg]">
-                   <svg class="w-16 h-10" viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
-                     <path d="M8,32 Q35,-5 72,14" />
-                     <path d="M61,4 L74,16 L58,22" />
+                <!-- Swoosh arrow - small, fixed, pointing upper-right toward mango -->
+                <div class="hidden xl:block absolute -right-24 -top-[60%] text-gray-900 opacity-80 drop-shadow-sm">
+                   <svg class="w-14 h-12" viewBox="0 0 70 60" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                     <!-- Curves from bottom-left UP to upper-right toward the mango -->
+                     <path d="M6,54 Q10,20 60,8" />
+                     <!-- Arrowhead at upper-right -->
+                     <path d="M46,2 L62,9 L54,22" />
                    </svg>
                 </div>
               </span>
@@ -454,30 +456,31 @@
               if (animatedProg < 0) animatedProg = 0;
           }
 
-          // Shift origin 120px left so mango & path start on the left side
-          const hx = hRect.left + (hRect.width / 2) - 120;
+          // Path goes from NAVBAR anchor → mango center (so it looks like it starts from mango)
+          const hx = hRect.left + (hRect.width / 2);
           const hy = hRect.top + (hRect.height / 2);
           const nx = nRectOriginal.left + nRectOriginal.width / 2;
           const ny = nRectOriginal.top + nRectOriginal.height / 2;
 
+          // Draw path FROM navbar TO mango center (mango is on top, so it looks like source)
           updatePath(hx, hy, nx, ny);
 
-          // Show/hide journey path - visible before scroll
+          // Show path ONLY when completely at rest (animatedProg === 0, no scroll at all)
+          // Disappears immediately as soon as user starts scrolling
           if (journeySvg) {
-            if (animatedProg < 1) {
+            if (animatedProg <= 0) {
               journeySvg.style.display = 'block';
-              // Label centered below the mango image (at hRect bottom-center, not shifted left)
+              // Label centered directly below the mango
               if (labelStart) {
                 const mangoCenterX = hRect.left + (hRect.width / 2);
-                const mangoBottom = hRect.top + hRect.height - 20;
+                const mangoBottom = hRect.top + hRect.height - 30;
                 labelStart.setAttribute('transform', `translate(${mangoCenterX}, ${mangoBottom})`);
               }
             } else {
+              // Immediately hide as soon as scroll starts
               journeySvg.style.display = 'none';
             }
           }
-
-          // NOTE: Swoosh arrow is now static HTML/SVG - no JS tracking needed
 
           if (animatedProg <= 0) {
               flying.style.position = 'absolute';
