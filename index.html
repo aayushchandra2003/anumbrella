@@ -10,13 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="/src/style.css" rel="stylesheet">
     <style>
+      html {
+        scroll-behavior: smooth;
+      }
       body {
         font-family: 'Inter', sans-serif;
       }
       h1, h2, h3, h4, .display-font {
         font-family: 'Outfit', 'Inter', sans-serif;
       }
-      /* Ensure images blend well with the banner background */
       .blend-image {
         mix-blend-mode: multiply;
       }
@@ -27,6 +29,10 @@
     </style>
   </head>
   <body class="bg-[#F9F7F2] text-gray-900 font-inter antialiased overflow-x-hidden selection:bg-yellow-400 selection:text-black">
+    
+    <!-- Flying mango (MUST be at body level, outside any overflow:hidden container) -->
+    <img id="flying-mango" src="./public/images/floating_mango.png" alt="Flying Mango" class="object-contain z-[999] pointer-events-none" style="position:absolute; top:0; left:0; width:140px; height:140px;" />
+
     <!-- Hero Section Wraps Navbar like in the design (Background continuous) -->
     <div class="relative bg-[#FFCF08] min-h-[95vh] rounded-b-[2rem] md:rounded-b-[4rem] shadow-xl overflow-hidden flex flex-col border-b-8 border-gray-900">
       
@@ -158,8 +164,6 @@
                
                <!-- Anchor for the flying mango in hero -->
                <div id="hero-mango-anchor" class="absolute -top-14 -left-2 lg:-top-16 lg:-left-12 w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 opacity-0 bg-red-500/0"></div>
-               <!-- Flying mango element for scroll animation -->
-               <img id="flying-mango" src="./public/images/floating_mango.png" alt="Flying Mango" class="absolute top-0 left-0 w-full h-full object-contain z-50 pointer-events-none" />
                
                <!-- 100% Organic Sticker (Bottom Right) Shorter and Smaller -->
                <div class="absolute -bottom-8 right-2 lg:-right-4 w-20 h-20 md:w-28 md:h-28 lg:w-28 lg:h-28 bg-[#FF5C00] text-white rounded-full flex flex-col justify-center items-center transform rotate-12 shadow-[0_10px_20px_rgba(255,92,0,0.4)] border-4 border-white animate-[pulse_3s_ease-in-out_infinite]">
@@ -173,6 +177,16 @@
         </div>
       </div>
     </div>
+
+    <!-- Dotted Journey Path SVG (visible on hero, follows the mango from Bangalore to Navbar) -->
+    <svg id="journey-path" class="fixed inset-0 w-full h-full z-[998] pointer-events-none" style="display:none;">
+      <path id="visible-flight-path" fill="none" stroke="white" stroke-width="2" stroke-dasharray="6,8" stroke-linecap="round" opacity="0.5"/>
+      <!-- Bangalore label -->
+      <g id="journey-label-start" opacity="0.7">
+        <circle r="4" fill="#FFCF08" stroke="white" stroke-width="1.5"/>
+        <text x="10" y="5" fill="white" font-size="11" font-weight="700" font-family="Inter, sans-serif">Bangalore's Farms</text>
+      </g>
+    </svg>
 
     <!-- Scrolling Marquee Banner just under the hero to connect visually to next sections -->
     <div class="bg-gray-900 border-b-8 border-[#FFCF08] text-white py-4 overflow-hidden -mt-4 relative z-0 left-0 right-0">
@@ -409,6 +423,10 @@
         const flying = document.getElementById('flying-mango');
         const hAnchor = document.getElementById('hero-mango-anchor');
         const nAnchor = document.getElementById('nav-mango-anchor');
+        const journeySvg = document.getElementById('journey-path');
+        const visiblePath = document.getElementById('visible-flight-path');
+        const labelStart = document.getElementById('journey-label-start');
+        const nav = document.getElementById('main-nav');
 
         if (!flying || !hAnchor || !nAnchor) return;
 
@@ -422,11 +440,15 @@
         dummySvg.appendChild(flightCurve);
 
         function updatePath(hx, hy, nx, ny) {
-            const cp1x = hx - 400;
-            const cp1y = hy - 100;
-            const cp2x = nx - 100;
-            const cp2y = ny + 300;
+            const cp1x = hx + 200;
+            const cp1y = hy - 250;
+            const cp2x = nx - 250;
+            const cp2y = ny + 200;
             flightCurve.setAttribute("d", `M ${hx} ${hy} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${nx} ${ny}`);
+            // Also update the visible SVG path
+            if (visiblePath) {
+                visiblePath.setAttribute("d", `M ${hx} ${hy} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${nx} ${ny}`);
+            }
         }
 
         function easeInOutSine(x) {
@@ -444,6 +466,19 @@
           const currentScroll = window.scrollY;
           const targetIsSticky = currentScroll > triggerScroll;
 
+          // Navbar shrink on scroll
+          if (nav) {
+            if (currentScroll > 50) {
+              nav.classList.add('py-1.5', 'md:py-2', 'shadow-lg');
+              nav.classList.remove('py-2.5', 'md:py-3');
+              nav.style.borderColor = 'transparent';
+            } else {
+              nav.classList.remove('py-1.5', 'md:py-2', 'shadow-lg');
+              nav.classList.add('py-2.5', 'md:py-3');
+              nav.style.borderColor = '';
+            }
+          }
+
           const speed = 0.0020; 
           
           if (targetIsSticky) {
@@ -454,13 +489,26 @@
               if (animatedProg < 0) animatedProg = 0;
           }
 
+          // Show/hide journey path
+          if (journeySvg) {
+            if (animatedProg > 0 && animatedProg < 1) {
+              journeySvg.style.display = 'block';
+              // Position the Bangalore label at start of path
+              if (labelStart) {
+                labelStart.setAttribute('transform', `translate(${hRect.left + hRect.width/2}, ${hRect.top + hRect.height/2})`);
+              }
+            } else {
+              journeySvg.style.display = 'none';
+            }
+          }
+
           if (animatedProg <= 0) {
               flying.style.position = 'absolute';
-              flying.style.left = '0px';
-              flying.style.top = '0px';
-              flying.style.width = '100%';
-              flying.style.height = '100%';
-              flying.style.transform = 'none';
+              flying.style.left = `${hRect.left + window.scrollX}px`;
+              flying.style.top = `${hRect.top + window.scrollY}px`;
+              flying.style.width = `${hRect.width}px`;
+              flying.style.height = `${hRect.height}px`;
+              flying.style.transform = 'rotate(-12deg)';
           } 
           else if (animatedProg >= 1) {
               const nx = nRectOriginal.left + nRectOriginal.width / 2;
