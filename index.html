@@ -45,7 +45,7 @@
           
           <!-- Desktop Links -->
           <div class="hidden lg:flex space-x-10 items-center">
-            <a href="#" class="text-gray-900 hover:text-orange-600 font-bold text-sm transition-colors relative group">
+            <a href="javascript:window.scrollTo({top:0,behavior:'smooth'})" class="text-gray-900 hover:text-orange-600 font-bold text-sm transition-colors relative group">
               Home
               <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 transition-all group-hover:w-full"></span>
             </a>
@@ -66,26 +66,26 @@
 
           <!-- Icons & CTA -->
           <div class="flex items-center space-x-4 md:space-x-6">
-            <!-- Bag Icon -->
-            <button class="relative text-gray-900 hover:text-orange-600 transition-colors p-2 hidden sm:block">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <!-- badge -->
-              <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-orange-600 rounded-full border-2 border-white"></span>
-            </button>
-            
             <a href="#shop" class="bg-gray-900 hover:bg-black text-white px-6 py-2 md:px-7 md:py-2.5 rounded-full font-bold text-sm shadow-md hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center gap-2 border-[3px] border-gray-900 hover:border-black">
               Shop Now
             </a>
 
             <!-- Mobile menu button -->
             <div class="lg:hidden flex items-center">
-              <button class="text-gray-900 p-1">
+              <button id="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-900 p-1">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
               </button>
             </div>
           </div>
+        </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4 flex flex-col gap-3 px-2">
+          <a href="javascript:window.scrollTo({top:0,behavior:'smooth'});document.getElementById('mobile-menu').classList.add('hidden')" class="text-gray-900 font-bold text-sm px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors">Home</a>
+          <a href="#shop" onclick="window.selectProduct('12');document.getElementById('mobile-menu').classList.add('hidden')" class="text-gray-900 font-bold text-sm px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors">12 Pieces Gift Pack</a>
+          <a href="#shop" onclick="window.selectProduct('24');document.getElementById('mobile-menu').classList.add('hidden')" class="text-gray-900 font-bold text-sm px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors">24 Pieces Gift Pack</a>
+          <a href="https://wa.me/918178879503?text=Hey,%20I%20wanted%20to%20purchase%20in%20bulk.%20Can%20you%20please%20tell%20me%20about%20it%3F" target="_blank" class="text-gray-900 font-bold text-sm px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors">Bulk Query</a>
         </div>
       </nav>
 
@@ -158,6 +158,8 @@
                
                <!-- Anchor for the flying mango in hero -->
                <div id="hero-mango-anchor" class="absolute -top-14 -left-2 lg:-top-16 lg:-left-12 w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 opacity-0 bg-red-500/0"></div>
+               <!-- Flying mango element for scroll animation -->
+               <img id="flying-mango" src="./public/images/floating_mango.png" alt="Flying Mango" class="absolute top-0 left-0 w-full h-full object-contain z-50 pointer-events-none" />
                
                <!-- 100% Organic Sticker (Bottom Right) Shorter and Smaller -->
                <div class="absolute -bottom-8 right-2 lg:-right-4 w-20 h-20 md:w-28 md:h-28 lg:w-28 lg:h-28 bg-[#FF5C00] text-white rounded-full flex flex-col justify-center items-center transform rotate-12 shadow-[0_10px_20px_rgba(255,92,0,0.4)] border-4 border-white animate-[pulse_3s_ease-in-out_infinite]">
@@ -288,21 +290,36 @@
         <div class="bg-gray-800/50 p-6 rounded-2xl w-full md:w-auto border border-gray-700 max-w-sm ml-auto text-left">
            <h3 class="text-white font-black text-xl mb-4">Contact Info</h3>
            <div class="space-y-4">
+             <!-- Address -->
              <div class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-[#FFCF08] mt-1 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 <span class="text-gray-300 font-medium text-sm leading-relaxed">
-                   Anand Niketan<br>
-                   Delhi, India - 110021
+                   C-116, Basement,<br>
+                   Anand Niketan - 110021<br>
+                   Delhi
                 </span>
              </div>
              
              <div class="w-full h-px bg-gray-700"></div>
              
+             <!-- Delhi Delivery Numbers -->
              <div class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-[#FFCF08] mt-1 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                <div class="flex flex-col text-sm text-gray-300 font-medium">
-                   <span>+91 9560447333 <span class="text-gray-500">(Delhi)</span></span>
-                   <span>+91 8178879503 <span class="text-gray-500">(Bengaluru)</span></span>
+                <div class="flex flex-col text-sm text-gray-300 font-medium gap-1">
+                   <span class="text-gray-500 text-xs font-bold uppercase tracking-wider">For Delivery in Delhi</span>
+                   <a href="tel:+918178879503" class="hover:text-[#FFCF08] transition-colors">+91 8178879503</a>
+                   <a href="tel:+918882908766" class="hover:text-[#FFCF08] transition-colors">+91 8882908766</a>
+                </div>
+             </div>
+             
+             <div class="w-full h-px bg-gray-700"></div>
+             
+             <!-- Bangalore Number -->
+             <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[#FFCF08] mt-1 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <div class="flex flex-col text-sm text-gray-300 font-medium gap-1">
+                   <span class="text-gray-500 text-xs font-bold uppercase tracking-wider">In Bangalore</span>
+                   <a href="tel:+919964873237" class="hover:text-[#FFCF08] transition-colors">+91 9964873237</a>
                 </div>
              </div>
            </div>
@@ -312,6 +329,9 @@
               <span class="text-xs font-bold uppercase tracking-wider leading-relaxed">Gift boxes of 12 pieces or any required amount available.</span>
            </div>
         </div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 mt-16 text-center border-t border-gray-800 pt-8">
+        <p class="text-sm text-gray-500 font-bold uppercase tracking-widest">© 2026 Ammasthota. All rights reserved.</p>
       </div>
     </footer>
 
@@ -331,13 +351,67 @@
         }
       }
     </script>
+    <!-- selectProduct MUST be global and available before DOMContentLoaded so navbar onclick works -->
+    <script>
+      window.selectedPack = null;
+      window.selectProduct = function(pack) {
+          window.selectedPack = pack;
+          
+          // Reset both cards visually
+          document.getElementById('card-12').classList.remove('border-gray-900', 'bg-[#F9F7F2]');
+          document.getElementById('card-24').classList.remove('border-gray-900', 'bg-[#F9F7F2]');
+          document.getElementById('card-12').classList.add('border-gray-100', 'bg-white');
+          document.getElementById('card-24').classList.add('border-gray-100', 'bg-white');
+          
+          // Empty checks
+          document.getElementById('checkbox-12').innerHTML = '';
+          document.getElementById('checkbox-24').innerHTML = '';
+          document.getElementById('checkbox-12').classList.remove('bg-[#25D366]', 'border-[#25D366]');
+          document.getElementById('checkbox-24').classList.remove('bg-[#25D366]', 'border-[#25D366]');
+          
+          // Reset badges
+          document.getElementById('badge-12').innerText = 'Best Seller';
+          document.getElementById('badge-12').classList.remove('bg-[#FFCF08]', 'text-black', 'text-gray-900');
+          document.getElementById('badge-12').classList.add('bg-gray-900', 'text-white');
+          document.getElementById('badge-24').classList.add('hidden');
+          document.getElementById('badge-24').classList.remove('bg-[#FFCF08]', 'text-black');
+
+          // Select active
+          const activeCard = document.getElementById(`card-${pack}`);
+          activeCard.classList.remove('border-gray-100', 'bg-white');
+          activeCard.classList.add('border-gray-900', 'bg-[#F9F7F2]');
+          
+          const activeCheck = document.getElementById(`checkbox-${pack}`);
+          activeCheck.classList.add('bg-[#25D366]', 'border-[#25D366]');
+          activeCheck.innerHTML = '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+
+          if(pack === '12') {
+             document.getElementById('badge-12').innerText = 'Selected';
+             document.getElementById('badge-12').classList.remove('bg-gray-900', 'text-white');
+             document.getElementById('badge-12').classList.add('bg-[#FFCF08]', 'text-black');
+          } else {
+             document.getElementById('badge-24').classList.remove('hidden');
+             document.getElementById('badge-24').innerText = 'Selected';
+             document.getElementById('badge-24').classList.add('bg-[#FFCF08]', 'text-black');
+          }
+
+          // Enable master checkout button
+          const btn = document.getElementById('shop-button');
+          btn.classList.remove('bg-gray-300', 'text-gray-500', 'pointer-events-none');
+          btn.classList.add('bg-gray-900', 'text-white', 'hover:bg-[#FFCF08]', 'hover:text-black', 'border-gray-900');
+          btn.innerHTML = `Order ${pack} Pieces via WhatsApp <svg class="w-5 h-5 inline-block ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>`;
+          btn.href = `https://wa.me/918178879503?text=Hey!%20I%20am%20interested%20in%20buying%20the%20${pack}%20Pieces%20Gift%20Pack.`;
+          btn.target = "_blank";
+      };
+    </script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const flying = document.getElementById('flying-mango');
         const hAnchor = document.getElementById('hero-mango-anchor');
         const nAnchor = document.getElementById('nav-mango-anchor');
 
-        let isSticky = false;
+        if (!flying || !hAnchor || !nAnchor) return;
+
         let animatedProg = 0;
         let lastTime = performance.now();
 
@@ -355,7 +429,6 @@
             flightCurve.setAttribute("d", `M ${hx} ${hy} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${nx} ${ny}`);
         }
 
-        // Add easing
         function easeInOutSine(x) {
             return -(Math.cos(Math.PI * x) - 1) / 2;
         }
@@ -369,11 +442,8 @@
 
           const triggerScroll = window.innerHeight * 0.15;
           const currentScroll = window.scrollY;
-
-          // Desired state
           const targetIsSticky = currentScroll > triggerScroll;
 
-          // Animate logic based on dt
           const speed = 0.0020; 
           
           if (targetIsSticky) {
@@ -437,58 +507,6 @@
         }
         
         requestAnimationFrame(renderFlyer);
-
-        // Shop Interface State Management
-        window.selectedPack = null;
-        window.selectProduct = function(pack) {
-            window.selectedPack = pack;
-            
-            // Reset both cards visually
-            document.getElementById('card-12').classList.remove('border-gray-900', 'bg-[#F9F7F2]');
-            document.getElementById('card-24').classList.remove('border-gray-900', 'bg-[#F9F7F2]');
-            document.getElementById('card-12').classList.add('border-gray-100', 'bg-white');
-            document.getElementById('card-24').classList.add('border-gray-100', 'bg-white');
-            
-            // Empty checks
-            document.getElementById('checkbox-12').innerHTML = '';
-            document.getElementById('checkbox-24').innerHTML = '';
-            document.getElementById('checkbox-12').classList.remove('bg-[#25D366]', 'border-[#25D366]');
-            document.getElementById('checkbox-24').classList.remove('bg-[#25D366]', 'border-[#25D366]');
-            
-            // Reset badges
-            document.getElementById('badge-12').innerText = 'Best Seller';
-            document.getElementById('badge-12').classList.remove('bg-[#FFCF08]', 'text-black', 'text-gray-900');
-            document.getElementById('badge-12').classList.add('bg-gray-900', 'text-white');
-            document.getElementById('badge-24').classList.add('hidden');
-            document.getElementById('badge-24').classList.remove('bg-[#FFCF08]', 'text-black');
-
-            // Select active
-            const activeCard = document.getElementById(`card-${pack}`);
-            activeCard.classList.remove('border-gray-100', 'bg-white');
-            activeCard.classList.add('border-gray-900', 'bg-[#F9F7F2]');
-            
-            const activeCheck = document.getElementById(`checkbox-${pack}`);
-            activeCheck.classList.add('bg-[#25D366]', 'border-[#25D366]');
-            activeCheck.innerHTML = '<svg class="w-5 h-5 text-white animate-[pulse_0.5s_ease-out_1]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
-
-            if(pack === '12') {
-               document.getElementById('badge-12').innerText = 'Selected';
-               document.getElementById('badge-12').classList.remove('bg-gray-900', 'text-white');
-               document.getElementById('badge-12').classList.add('bg-[#FFCF08]', 'text-black');
-            } else {
-               document.getElementById('badge-24').classList.remove('hidden');
-               document.getElementById('badge-24').innerText = 'Selected';
-               document.getElementById('badge-24').classList.add('bg-[#FFCF08]', 'text-black');
-            }
-
-            // Enable master checkout button
-            const btn = document.getElementById('shop-button');
-            btn.classList.remove('bg-gray-300', 'text-gray-500', 'pointer-events-none');
-            btn.classList.add('bg-gray-900', 'text-white', 'hover:bg-[#FFCF08]', 'hover:text-black', 'border-gray-900');
-            btn.innerHTML = `Order ${pack} Pieces via WhatsApp <svg class="w-5 h-5 transition-transform group-hover:translate-x-1 inline-block ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>`;
-            btn.href = `https://wa.me/918178879503?text=Hey!%20I%20am%20interested%20in%20buying%20the%20${pack}%20Pieces%20Gift%20Pack.`;
-            btn.target = "_blank";
-        };
       });
     </script>
   </body>
