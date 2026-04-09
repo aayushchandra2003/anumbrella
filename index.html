@@ -448,13 +448,21 @@
               if (animatedProg < 0) animatedProg = 0;
           }
 
-          // Show/hide journey path
+          // Always calculate path so it's fully populated before scrolling
+          const hx = hRect.left + (hRect.width / 2);
+          const hy = hRect.top + (hRect.height / 2);
+          const nx = nRectOriginal.left + nRectOriginal.width / 2;
+          const ny = nRectOriginal.top + nRectOriginal.height / 2;
+
+          updatePath(hx, hy, nx, ny);
+
+          // Show/hide journey path - should be visible even at rest before scroll
           if (journeySvg) {
-            if (animatedProg > 0 && animatedProg < 1) {
+            if (animatedProg < 1) {
               journeySvg.style.display = 'block';
-              // Position the Bangalore label at start of path
+              // Position the Bangalore label slightly below the mango's starting locus
               if (labelStart) {
-                labelStart.setAttribute('transform', `translate(${hRect.left + hRect.width/2}, ${hRect.top + hRect.height/2})`);
+                labelStart.setAttribute('transform', `translate(${hx - 60}, ${hy + 80})`);
               }
             } else {
               journeySvg.style.display = 'none';
@@ -470,9 +478,6 @@
               flying.style.transform = 'rotate(-12deg)';
           } 
           else if (animatedProg >= 1) {
-              const nx = nRectOriginal.left + nRectOriginal.width / 2;
-              const ny = nRectOriginal.top + nRectOriginal.height / 2;
-              
               flying.style.position = 'fixed';
               flying.style.left = '0px';
               flying.style.top = '0px';
@@ -481,13 +486,6 @@
               flying.style.transform = `translate(${nx - nRectOriginal.width/2}px, ${ny - nRectOriginal.height/2}px) rotate(0deg)`;
           } 
           else {
-              const hx = hRect.left + (hRect.width / 2);
-              const hy = hRect.top + (hRect.height / 2);
-              const nx = nRectOriginal.left + nRectOriginal.width / 2;
-              const ny = nRectOriginal.top + nRectOriginal.height / 2;
-
-              updatePath(hx, hy, nx, ny);
-
               flying.style.position = 'fixed';
               flying.style.left = '0px';
               flying.style.top = '0px';
